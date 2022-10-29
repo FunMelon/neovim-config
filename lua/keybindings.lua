@@ -139,8 +139,8 @@ pluginKeys.cmp = function(cmp)
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     -- 下一个
     ["<C-j>"] = cmp.mapping.select_next_item(),
-    -- 确认
-    ["<CR>"] = cmp.mapping.confirm({
+    -- 确认 (由于CR映射和enter矛盾，因此我不得不这么做)
+    ["<C-i>"] = cmp.mapping.confirm({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
