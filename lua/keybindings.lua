@@ -252,4 +252,15 @@ pluginKeys.mapLSP = function(mapbuf)
   -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
 end
 
+-- lspsage的快捷键有问题，我不会解决只能出此下策
+  map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+  map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+  map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  map("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
+  map("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+  map("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+  map("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+  map("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+  map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+-- 请原谅我 
 return pluginKeys
