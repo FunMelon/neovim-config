@@ -27,4 +27,4 @@ require("lsp.null-ls")
 -- 自动补齐括号
 require("lsp.nvim-autopairs")
 -- 快速补齐代码
-require("lsp.surround")
+-- require("lsp.surround")

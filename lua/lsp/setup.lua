@@ -16,6 +16,8 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "sumneko_lua",
     "clangd",
+    "bashls",
+    "jsonls",
   },
 })
 
@@ -28,6 +30,8 @@ local lspconfig = require("lspconfig")
 local servers = {
   sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
   clangd = require("lsp.config.clangd"),
+  bashls = require("lsp.config.bash"),
+  jsonls = require("lsp.config.clangd"),
 }
 
 for name, config in pairs(servers) do

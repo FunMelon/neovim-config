@@ -6,7 +6,6 @@ local opts = {
     common.keyAttach(bufnr)
   end,
 }
-
 return {
   on_setup = function(server)
     server.setup(opts)
