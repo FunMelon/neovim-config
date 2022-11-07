@@ -1,5 +1,24 @@
+local status, mason = pcall(require, "mason")
+if not status then
+  vim.notify("没有找到 mason")
+  return
+end
+
+local status, mason_config = pcall(require, "mason-lspconfig")
+if not status then
+  vim.notify("没有找到 mason-lspconfig")
+  return
+end
+
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  vim.notify("没有找到 lspconfig")
+  return
+end
+
 -- :h mason-default-settings
-require("mason").setup({
+-- ~/.local/share/nvim/mason
+mason.setup({
   ui = {
     icons = {
       package_installed = "✓",
@@ -11,27 +30,24 @@ require("mason").setup({
 
 -- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
 -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
-require("mason-lspconfig").setup({
-  -- 确保安装，根据需要填写
+mason_config.setup({
   ensure_installed = {
     "sumneko_lua",
-    "clangd",
     "bashls",
     "jsonls",
+    "clangd",
   },
 })
 
-local lspconfig = require("lspconfig")
-
 -- 安装列表
--- { key: 语言 value: 配置文件 }
--- key 必须为下列网址列出的名称
+-- { key: 服务器名， value: 配置文件 }
+-- key 必须为下列网址列出的 server name，不可以随便写
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
   sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
-  clangd = require("lsp.config.clangd"),
   bashls = require("lsp.config.bash"),
-  jsonls = require("lsp.config.clangd"),
+  jsonls = require("lsp.config.json"),
+  clangd = require("lsp.config.clangd"),
 }
 
 for name, config in pairs(servers) do
@@ -43,3 +59,5 @@ for name, config in pairs(servers) do
     lspconfig[name].setup({})
   end
 end
+
+require("lsp.ui")
