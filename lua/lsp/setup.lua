@@ -36,6 +36,8 @@ mason_config.setup({
     "bashls",
     "jsonls",
     "clangd",
+    "pyright",
+    "cmake"
   },
 })
 
@@ -45,9 +47,10 @@ mason_config.setup({
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
   sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
-  bashls = require("lsp.config.bash"),
-  jsonls = require("lsp.config.json"),
-  clangd = require("lsp.config.clangd"),
+  bashls = require("lsp.config.base"),
+  jsonls = require("lsp.config.base"),
+  clangd = require("lsp.config.base"),
+  pyright = require("lsp.config.base"),
 }
 
 for name, config in pairs(servers) do
